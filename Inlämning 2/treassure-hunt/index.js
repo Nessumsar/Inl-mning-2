@@ -119,14 +119,14 @@ function chestClicked(){
 }
 
 /**
- * @desc Makes a XMLHttpRequest towards Pexels API to get 1 image from the API to then view at the page. 
- * To view more pictures at random you only have to change page=1
+ * @desc Makes a XMLHttpRequest towards Pexels API to get 4 images from the API to then view at the page. 
+ * Then randomly picks one of these to show.
  * Also checks readyState and status to indicate any errors. 
  * @return winningPicture - the response from the API
 */
 function getImageFromPexels(){
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.pexels.com/v1/search?query=treasure+query&per_page=1&page=1', true);
+  xhr.open('GET', 'https://api.pexels.com/v1/search?query=treasure+query&per_page=4&page=1', true);
   xhr.setRequestHeader('Authorization', '563492ad6f91700001000001afb0b99454cd43da9ca22caf84235907');
   xhr.addEventListener('load', function(){
   var pictures = JSON.parse(xhr.responseText);
@@ -144,6 +144,7 @@ function getImageFromPexels(){
 function refresh(){
 removeChestEvents();
 placeTreassure();
+getImageFromPexels();
 }
 
 /**
